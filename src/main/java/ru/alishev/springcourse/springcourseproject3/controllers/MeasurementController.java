@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import ru.alishev.springcourse.springcourseproject3.dto.MeasurementDTO;
 import ru.alishev.springcourse.springcourseproject3.dto.MeasurementResponse;
 import ru.alishev.springcourse.springcourseproject3.models.Measurement;
+import ru.alishev.springcourse.springcourseproject3.services.MeasurementService;
+import ru.alishev.springcourse.springcourseproject3.util.MeasurementErrorResponse;
+import ru.alishev.springcourse.springcourseproject3.util.MeasurementException;
+import ru.alishev.springcourse.springcourseproject3.util.MeasurementValidator;
 
 import java.util.stream.Collectors;
+
+import static ru.alishev.springcourse.springcourseproject3.util.ErrorsUtil.returnErrorsToClient;
 
 @RestController
 @RequestMapping("/measurements")
@@ -65,11 +71,11 @@ public class MeasurementController {
     }
 
     @ExceptionHandler
-    private ResponseEntity<MesurementErrorResponse> handleException(MeasurementException e) {
-        MeasurementErrorResponse response = new MeasurementErrorResonse(
+    private ResponseEntity<MeasurementErrorResponse> handleException(MeasurementException e) {
+        MeasurementErrorResponse response = new MeasurementErrorResponse(
                 e.getMessage(),
                 System.currentTimeMillis()
         );
-        return  new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }

@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import ru.alishev.springcourse.springcourseproject3.dto.SensorDTO;
 import ru.alishev.springcourse.springcourseproject3.models.Sensor;
 import ru.alishev.springcourse.springcourseproject3.services.SensorService;
+import ru.alishev.springcourse.springcourseproject3.util.MeasurementErrorResponse;
+import ru.alishev.springcourse.springcourseproject3.util.MeasurementException;
+import ru.alishev.springcourse.springcourseproject3.util.SensorValidator;
+
+import static ru.alishev.springcourse.springcourseproject3.util.ErrorsUtil.returnErrorsToClient;
 
 @RestController
 @RequestMapping("/sensors")
@@ -31,7 +36,7 @@ public class SensorsController {
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> registration(@RequestBody @Valid SensorDTO sensorDTO,
                                                    BindingResult bindingResult) {
-        Sensor sensorToAdd = convertCensor(sensorDTO);
+        Sensor sensorToAdd = convertToSensor(sensorDTO);
 
         sensorValidator.validate(sensorToAdd, bindingResult);
 
