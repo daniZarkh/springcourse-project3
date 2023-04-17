@@ -62,7 +62,7 @@ public class Measurement {
         return measurementTime;
     }
 
-    public void setMeasurementTime(LocalDateTime measurementTime) {
+    public void setMeasurementDateTime(LocalDateTime measurementTime) {
         this.measurementTime = measurementTime;
     }
 

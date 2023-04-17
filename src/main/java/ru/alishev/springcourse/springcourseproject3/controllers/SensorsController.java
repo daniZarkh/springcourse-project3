@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.alishev.springcourse.springcourseproject3.dto.SensorDTO;
 import ru.alishev.springcourse.springcourseproject3.models.Sensor;
+import ru.alishev.springcourse.springcourseproject3.services.SensorService;
 
 @RestController
 @RequestMapping("/sensors")
